@@ -1,7 +1,7 @@
 <?php
 class UsersController
 {
-    static public function insertController()
+    static public function insertUserController()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $levels = $_POST['levels'];
@@ -20,5 +20,23 @@ class UsersController
             }
         }
     }
-}
 
+    static public function searchByIdUserController()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['document'])) {
+            $document = $_POST['document'];
+
+            $userData = UsersModel::searchByIdUser($document);
+
+            echo json_encode($userData);
+        } else {
+            echo json_encode(array('error' => 'Documento no proporcionado'));
+        }
+    }
+
+    // static public function listarController()
+    // {
+    //     $response = UsersModel::list();
+    //     return $response;
+    // }
+}

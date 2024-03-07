@@ -1,5 +1,5 @@
 <?php
-require_once "çonfig/db.php";
+require_once "config/db.php";
 class UsersModel
 {
     static public function insertUser($levels, $document, $name, $phone, $email, $password)
@@ -22,4 +22,29 @@ class UsersModel
         $stmt->closeCursor();
         $stmt = null;
     }
+
+    static public function searchByIdUser($document)
+    {
+        $conn = ConectionBD::conection();
+        $stmt = $conn->prepare("SELECT * FROM Users WHERE document = ?");
+        $stmt->bindParam(1, $document, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!empty($result)) {
+            $row = $result[0];
+            $row['ky1ar'] = true;
+            return $row;
+        } else {
+            return array('ky1ar' => false);
+        }
+    }
+
+    // static public function list()
+    // {
+    //     $stmt = ConectionBD::conection()->prepare("SELECT * FROM users");
+    //     $stmt->execute();
+    //     return $stmt->fetchAll();
+    // }
 }
