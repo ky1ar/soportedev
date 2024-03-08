@@ -34,9 +34,9 @@ class UsersController
         }
     }
 
-    // static public function listarController()
-    // {
-    //     $response = UsersModel::list();
-    //     return $response;
-    // }
+    static public function listarController()
+    {
+        $response = UsersModel::list();
+        return $response;
+    }
 }

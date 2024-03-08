@@ -41,10 +41,10 @@ class UsersModel
         }
     }
 
-    // static public function list()
-    // {
-    //     $stmt = ConectionBD::conection()->prepare("SELECT * FROM users");
-    //     $stmt->execute();
-    //     return $stmt->fetchAll();
-    // }
+    static public function list()
+    {
+        $stmt = ConectionBD::conection()->prepare("SELECT * FROM users");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
